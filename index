@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PJOK Seru! - Kelas 1 SD</title>
+    <!-- Muat Tailwind CSS --><script src="https://cdn.tailwindcss.com"></script>
+    <!-- Konfigurasi Tema Ceria Tailwind --><script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'primary-blue': '#6366F1', // Biru keunguan yang lebih cerah
+                        'secondary-yellow': '#FBBF24', // Kuning cerah
+                        'content-green': '#10B981', // Hijau untuk konten
+                        'bg-light': '#F3F4F6', // Latar belakang ringan
+                        'text-dark': '#374151', // Teks gelap
+                    },
+                    fontFamily: {
+                        sans: ['Nunito', 'sans-serif'], // Font yang lebih ramah anak
+                    },
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+        /* Gaya kustom minimalis */
+        .card-flat {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            transition: transform 0.2s;
+        }
+        .card-flat:hover {
+            transform: translateY(-2px);
+        }
+        .nav-button-simple {
+            @apply px-4 py-2 rounded-full font-semibold text-sm transition-all duration-200;
+        }
+        .nav-button-simple.active {
+            @apply bg-primary-blue text-white shadow-md;
+        }
+        .nav-button-simple:not(.active) {
+            @apply text-text-dark hover:bg-gray-200;
+        }
+
+        /* Ornamen Hiasan */
+        .ornament-runner {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            width: 80px;
+            height: 80px;
+            opacity: 0.6;
+            z-index: 0;
+            animation: bounce 2s infinite ease-in-out;
+        }
+        .ornament-ball {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            opacity: 0.5;
+            z-index: 0;
+            animation: rotate 3s infinite linear;
+        }
+        .ornament-jump {
+            position: absolute;
+            top: 10%;
+            left: 5%;
+            width: 70px;
+            height: 70px;
+            opacity: 0.4;
+            z-index: 0;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        @keyframes rotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0) translateX(0); }
+            50% { transform: translateY(-15px) translateX(15px); }
+        }
+
+        /* Media icon adjustments */
+        .media-icon {
+            width: 2rem;
+            height: 2rem;
+            color: #6366F1; /* primary-blue */
+        }
+    </style>
+</head>
+<body class="bg-bg-light min-h-screen font-sans text-text-dark relative overflow-hidden">
+
+    <!-- Ornamen Hiasan --><div class="ornament-runner">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full text-secondary-yellow"><path d="M18 8a2 2 0 1 1 0 4H6a2 2 1 1 1 0-4h12zM21 12v3M3 12v3"/></svg>
+    </div>
+    <div class="ornament-ball">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full text-content-green"><circle cx="12" cy="12" r="10"/></svg>
+    </div>
+    <div class="ornament-jump">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="w-full h-full text-primary-blue"><path d="M17 19H5a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h12V3H5a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h12v-2zM15 13l4-4 4 4M19 8V2"/></svg>
+    </div>
+
+
+    <div id="app" class="max-w-7xl mx-auto p-4 md:p-8 relative z-10">
+
+        <!-- Header dan Navigasi Utama --><header class="bg-white rounded-xl card-flat p-4 mb-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <h1 class="text-3xl font-extrabold text-primary-blue mb-3 md:mb-0">
+                    PJOK Seru! <span class="text-secondary-yellow text-xl ml-2">Kelas 1 SD</span>
+                </h1>
+                <nav class="flex space-x-2 md:space-x-4">
+                    <button onclick="navigate('content')" class="nav-button-simple active">Mata Pelajaran</button>
+                    <button onclick="navigate('about')" class="nav-button-simple">Tentang</button>
+                    <button onclick="navigate('admin')" class="nav-button-simple">Admin</button>
+                    <button onclick="navigate('help')" class="nav-button-simple">Bantuan</button>
+                </nav>
+            </div>
+        </header>
+
+        <!-- Area Konten Utama --><main id="content-area">
+            <!-- Konten akan dirender di sini oleh JavaScript --></main>
+
+        <!-- Footer --><footer class="text-center mt-12 py-4 text-gray-500 text-sm">
+            &copy; 2025 PJOK Seru! | Dibuat dengan semangat digital untuk anak kelas 1 SD.
+        </footer>
+    </div>
+
+    <script>
+        // --- Data Konten (Simulasi Database) ---
+        let contentData = [
+            {
+                id: 1,
+                title: "Gerak Dasar Lokomotor",
+                description: "Gerakan berpindah tempat. Contoh: Berjalan, Berlari, Melompat.",
+                chapters: [
+                    {
+                        id: 101,
+                        title: "Bab 1: Ayo Berjalan Lurus!",
+                        materials: [
+                            { id: 1001, title: "Berjalan ke Depan", media: "text", content: "Berjalan adalah cara kita memindahkan tubuh. Berjalanlah dengan tegak dan lihat ke depan!", mediaFormat: "Teks" },
+                            { id: 1002, title: "Berjalan Zig-Zag", media: "image", content: "Berjalan membentuk huruf Z. Melatih keseimbangan dan kelincahan. Bayangkan kamu menghindari rintangan!", mediaFormat: "Ilustrasi" },
+                        ]
+                    },
+                    {
+                        id: 102,
+                        title: "Bab 2: Lari Pelan dan Cepat",
+                        materials: [
+                            { id: 1003, title: "Lari di Tempat", media: "video", content: "Angkat lututmu tinggi-tinggi seolah kamu berlari, tapi tetap di tempat. Ini pemanasan yang baik!", mediaFormat: "Video" },
+                            { id: 1004, title: "Lari ke Garis Finish", media: "text", content: "Berlari cepat dari satu titik ke titik lain. Ingat, selalu aman saat berlari!", mediaFormat: "Teks" },
+                        ]
+                    }
+                ]
+            },
+            {
+                id: 2,
+                title: "Gerak Dasar Non-Lokomotor",
+                description: "Gerakan tanpa berpindah tempat. Contoh: Membungkuk, Mengayun, Memutar.",
+                chapters: [
+                    {
+                        id: 201,
+                        title: "Bab 3: Gerakan Pemanasan",
+                        materials: [
+                            { id: 2001, title: "Mengayun Tangan", media: "image", content: "Ayunan tangan ke depan dan ke belakang. Gerakkan bahumu agar lentur seperti karet!", mediaFormat: "Ilustrasi" },
+                        ]
+                    }
+                ]
+            }
+        ];
+
+        let currentPage = 'content'; // State untuk navigasi
+
+        // --- Fungsi Helper untuk Icon (SVG Inline) ---
+        function getMediaIcon(type) {
+            let svg;
+            const commonClasses = "media-icon inline-block mr-2";
+
+            switch (type) {
+                case 'text':
+                    svg = `<svg class="${commonClasses}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/></svg>`;
+                    break;
+                case 'image':
+                    svg = `<svg class="${commonClasses}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"/><circle cx="8.5" cy="8.5" r="1.5"/><polyline points="21 15 16 10 5 21"/></svg>`;
+                    break;
+                case 'video':
+                    svg = `<svg class="${commonClasses}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 17H2V7h20z"/><path d="m3 12 5 3 5-3-5-3z"/></svg>`;
+                    break;
+                default:
+                    svg = `<svg class="${commonClasses}" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15V8a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h14"/><path d="M7 13V7M11 19V7M15 19V7M19 19V7"/></svg>`;
+            }
+            return svg;
+        }
+
+        // --- Router dan Renderer ---
+
+        function navigate(page, data = null) {
+            currentPage = page;
+            renderPage(data);
+            updateNavButtons();
+        }
+
+        function updateNavButtons() {
+            document.querySelectorAll('.nav-button-simple').forEach(btn => {
+                const page = btn.getAttribute('onclick').match(/navigate\('([^']+)'/)[1];
+                if (page === currentPage) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+
+        function renderPage(data) {
+            const area = document.getElementById('content-area');
+            let html = '';
+
+            switch (currentPage) {
+                case 'content':
+                    html = renderContentOverview();
+                    break;
+                case 'chapter':
+                    html = renderChapterDetail(data); // data = subjectId
+                    break;
+                case 'material':
+                    html = renderMaterialDetail(data); // data = { subjectId, chapterId, materialId }
+                    break;
+                case 'about':
+                    html = renderAboutPage();
+                    break;
+                case 'admin':
+                    html = renderAdminPage();
+                    break;
+                case 'help':
+                    html = renderHelpPage();
+                    break;
+                default:
+                    html = renderContentOverview();
+            }
+
+            area.innerHTML = html;
+        }
+
+        // --- Render: Mata Pelajaran (Level 1: Subject) ---
+        function renderContentOverview() {
+            let html = `
+                <h2 class="text-3xl font-bold text-text-dark mb-6 text-center">Pilih Materi Seru Hari Ini!</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            `;
+            contentData.forEach(subject => {
+                html += `
+                    <div class="bg-white rounded-xl card-flat p-6 flex flex-col justify-between border-b-4 border-secondary-yellow">
+                        <div>
+                            <h3 class="text-2xl font-extrabold text-primary-blue mb-2">${subject.title}</h3>
+                            <p class="text-gray-600 mb-4 text-sm">${subject.description}</p>
+                        </div>
+                        <button onclick="navigate('chapter', ${subject.id})"
+                                class="w-full bg-content-green text-white py-2 rounded-lg font-semibold hover:bg-content-green/80 transition transform hover:scale-105">
+                            Lihat ${subject.chapters.length} Bab
+                        </button>
+                    </div>
+                `;
+            });
+            html += `</div>`;
+            return html;
+        }
+
+        // --- Render: Bab (Level 2: Chapters) ---
+        function renderChapterDetail(subjectId) {
+            const subject = contentData.find(s => s.id === subjectId);
+            if (!subject) return `<p class="text-center text-red-500">Materi tidak ditemukan.</p>`;
+
+            let html = `
+                <button onclick="navigate('content')" class="mb-6 flex items-center text-primary-blue hover:text-primary-blue/80 font-semibold transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                    Kembali ke Mata Pelajaran
+                </button>
+                <h2 class="text-3xl font-bold text-text-dark mb-6">${subject.title}</h2>
+                <div class="space-y-4">
+            `;
+
+            subject.chapters.forEach(chapter => {
+                html += `
+                    <div class="bg-white rounded-xl card-flat p-5 border-l-4 border-primary-blue">
+                        <h4 class="text-xl font-bold text-gray-700 mb-1">${chapter.title}</h4>
+                        <p class="text-sm text-gray-500 mb-3">${chapter.materials.length} Materi Pembelajaran</p>
+                        <button onclick="navigate('material', {subjectId: ${subjectId}, chapterId: ${chapter.id}})"
+                                class="bg-secondary-yellow text-text-dark px-4 py-2 rounded-full text-sm font-medium hover:bg-secondary-yellow/80 transition">
+                            Mulai Belajar
+                        </button>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            return html;
+        }
+
+        // --- Render: Materi (Level 3: Materials) ---
+        function renderMaterialDetail(data) {
+            const subject = contentData.find(s => s.id === data.subjectId);
+            const chapter = subject?.chapters.find(c => c.id === data.chapterId);
+            if (!chapter) return `<p class="text-center text-red-500">Bab atau Materi tidak ditemukan.</p>`;
+
+            let html = `
+                <button onclick="navigate('chapter', ${data.subjectId})" class="mb-6 flex items-center text-primary-blue hover:text-primary-blue/80 font-semibold transition">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 mr-1" viewBox="0 0 20 20" fill="currentColor"><path fill-rule="evenodd" d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z" clip-rule="evenodd" /></svg>
+                    Kembali ke Bab: ${subject.title}
+                </button>
+                <h2 class="text-3xl font-bold text-text-dark mb-6">${chapter.title}</h2>
+                <div class="space-y-6">
+            `;
+
+            chapter.materials.forEach(material => {
+                html += `
+                    <div class="bg-white rounded-xl card-flat p-6 border-l-4 border-content-green">
+                        <div class="flex items-center space-x-3 mb-4">
+                            ${getMediaIcon(material.media)}
+                            <h4 class="text-2xl font-bold text-primary-blue">${material.title}</h4>
+                            <span class="text-xs px-2 py-0.5 bg-gray-100 rounded-full text-gray-600">${material.mediaFormat}</span>
+                        </div>
+                        <p class="text-gray-700 text-base leading-relaxed mb-4">${material.content}</p>
+
+                        <!-- Area Media (Simulasi) --><div class="mt-4 p-4 bg-bg-light rounded-lg border-dashed border-2 border-gray-300 text-center text-gray-500">
+                            ${material.media === 'video' ? `
+                                <div class="aspect-video w-full max-w-lg mx-auto bg-gray-300 flex items-center justify-center rounded-md">
+                                    <span class="text-lg text-gray-600 font-semibold">Video Latihan Disini</span>
+                                </div>
+                                <p class="mt-2 text-sm">Simulasi video untuk ${material.title}</p>
+                            ` : material.media === 'image' ? `
+                                <img src="https://placehold.co/400x200/6366F1/ffffff?text=${material.title.replace(/ /g, '+')}" 
+                                     alt="Ilustrasi ${material.title}" 
+                                     class="mx-auto mt-2 rounded-lg max-w-full h-auto border border-gray-200">
+                                <p class="mt-2 text-sm">Simulasi ilustrasi untuk ${material.title}</p>
+                            ` : `
+                                <div class="p-3 bg-gray-100 rounded-md">
+                                    <p class="font-medium">Detail penjelasan teks untuk ${material.title}:</p>
+                                    <p class="text-sm mt-1">Ini adalah bagian di mana penjelasan teks lebih lanjut akan disajikan, misalnya langkah-langkah gerakan secara rinci atau tips tambahan.</p>
+                                </div>
+                            `}
+                        </div>
+                    </div>
+                `;
+            });
+
+            html += `</div>`;
+            return html;
+        }
+
+        // --- Render: Tentang ---
+        function renderAboutPage() {
+            return `
+                <div class="bg-white rounded-xl card-flat p-8">
+                    <h2 class="text-3xl font-bold text-primary-blue mb-4">Tentang PJOK Seru!</h2>
+                    <p class="text-gray-700 mb-4">Website ini dirancang khusus untuk anak-anak kelas 1 SD. Tujuannya adalah membuat pelajaran Pendidikan Jasmani, Olahraga, dan Kesehatan (PJOK) menjadi menyenangkan dan interaktif, bahkan saat belajar dari rumah.</p>
+                    <div class="bg-secondary-yellow/20 p-4 rounded-lg">
+                        <h3 class="text-xl font-semibold text-primary-blue mb-2">Filosofi Kami</h3>
+                        <ul class="list-disc list-inside text-gray-700 ml-4 space-y-1">
+                            <li><strong class="text-primary-blue">Belajar Sambil Bergerak:</strong> Kami percaya gerak adalah fondasi belajar terbaik.</li>
+                            <li><strong class="text-primary-blue">Media Beragam:</strong> Menggunakan teks, ilustrasi, dan video (simulasi) untuk membantu berbagai gaya belajar.</li>
+                            <li><strong class="text-primary-blue">Aman dan Menyenangkan:</strong> Semua materi disajikan dengan bahasa yang mudah dipahami anak-anak.</li>
+                        </ul>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- Render: Bantuan ---
+        function renderHelpPage() {
+            return `
+                <div class="bg-white rounded-xl card-flat p-8">
+                    <h2 class="text-3xl font-bold text-primary-blue mb-4">Bantuan & Panduan Penggunaan</h2>
+                    <p class="text-gray-700 mb-6">Butuh bantuan? Berikut adalah panduan singkat cara menggunakan website ini.</p>
+
+                    <div class="space-y-6">
+                        <div class="border-b pb-4">
+                            <h3 class="text-xl font-semibold text-content-green mb-2">1. Bagaimana Cara Memulai Belajar?</h3>
+                            <p class="text-gray-700">Pilih menu **Mata Pelajaran**, lalu klik salah satu judul materi besar (misalnya: Gerak Dasar Lokomotor). Kemudian, Anda akan melihat bab-bab yang tersedia. Klik tombol **Mulai Belajar** untuk masuk ke rincian materi.</p>
+                        </div>
+                        <div class="border-b pb-4">
+                            <h3 class="text-xl font-semibold text-content-green mb-2">2. Apa Fungsi "Admin"?</h3>
+                            <p class="text-gray-700">Ini adalah area khusus untuk guru (Anda) untuk menambah atau mengubah daftar materi pembelajaran. Hanya boleh diakses oleh Anda. (Saat ini berupa simulasi input data).</p>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-semibold text-content-green mb-2">3. Kontak dan Dukungan</h3>
+                            <p class="text-gray-700">Jika ada masalah teknis, silakan hubungi tim dukungan kami melalui email simulasi: <a href="mailto:dukungan@pjokseru.com" class="text-primary-blue font-medium hover:underline">dukungan@pjokseru.com</a>.</p>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+
+        // --- Render: Pengaturan Admin (Simulasi CRUD Sederhana) ---
+        function renderAdminPage() {
+            // Sederhana: hanya menambah materi baru ke bab pertama subjek pertama
+            const firstSubject = contentData[0];
+            const firstChapter = firstSubject ? firstSubject.chapters[0] : null;
+
+            if (!firstChapter) {
+                return `<p class="text-center text-red-500">Data materi belum ada. Mohon inisiasi data terlebih dahulu.</p>`;
+            }
+
+            let html = `
+                <div class="bg-white rounded-xl card-flat p-8">
+                    <h2 class="text-3xl font-bold text-primary-blue mb-6">Pengaturan Admin</h2>
+                    <p class="text-red-500 mb-4 font-medium">PERINGATAN: Fitur ini adalah simulasi. Data yang ditambahkan hanya tersimpan sementara selama sesi ini.</p>
+
+                    <h3 class="text-xl font-semibold text-content-green mb-4">Tambah Materi Baru (ke: ${firstChapter.title})</h3>
+                    <form id="add-material-form" class="space-y-4">
+                        <div>
+                            <label for="material-title" class="block text-gray-700 font-medium mb-1">Judul Materi</label>
+                            <input type="text" id="material-title" required class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent outline-none">
+                        </div>
+                        <div>
+                            <label for="material-content" class="block text-gray-700 font-medium mb-1">Isi / Deskripsi Materi</label>
+                            <textarea id="material-content" required rows="3" class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent outline-none"></textarea>
+                        </div>
+                        <div>
+                            <label for="material-media" class="block text-gray-700 font-medium mb-1">Jenis Media</label>
+                            <select id="material-media" required class="w-full p-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-primary-blue focus:border-transparent outline-none bg-white">
+                                <option value="text">Teks (Penjelasan)</option>
+                                <option value="image">Ilustrasi (Gambar)</option>
+                                <option value="video">Video (Simulasi Gerak)</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="bg-primary-blue text-white px-6 py-2 rounded-lg font-semibold hover:bg-primary-blue/80 transition transform hover:scale-[1.01]">
+                            Tambah Materi
+                        </button>
+                    </form>
+
+                    <h3 class="text-xl font-semibold text-content-green mt-8 mb-4">Daftar Materi di ${firstChapter.title}</h3>
+                    <div id="admin-material-list" class="space-y-3">
+                        ${firstChapter.materials.map(m => `
+                            <div class="flex flex-col md:flex-row justify-between items-start md:items-center bg-gray-50 p-3 rounded-lg border">
+                                <span class="text-gray-700 font-medium">${m.title}</span>
+                                <div class="flex items-center mt-2 md:mt-0 space-x-2">
+                                    <span class="text-xs px-2 py-0.5 bg-gray-200 rounded-full text-gray-600">${m.mediaFormat}</span>
+                                    <button onclick="deleteMaterial(${firstChapter.id}, ${m.id})" class="text-red-500 hover:text-red-700 text-sm font-medium">Hapus</button>
+                                </div>
+                            </div>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Setelah HTML dirender, pasang event listener untuk form
+            setTimeout(() => {
+                document.getElementById('add-material-form').addEventListener('submit', handleAddMaterial);
+            }, 0);
+
+            return html;
+        }
+
+        function handleAddMaterial(event) {
+            event.preventDefault();
+            const title = document.getElementById('material-title').value;
+            const content = document.getElementById('material-content').value;
+            const mediaType = document.getElementById('material-media').value;
+
+            const firstSubject = contentData[0];
+            const firstChapter = firstSubject.chapters[0];
+
+            // Tentukan format media yang sesuai
+            let mediaFormatText;
+            if (mediaType === 'text') mediaFormatText = 'Teks';
+            else if (mediaType === 'image') mediaFormatText = 'Ilustrasi';
+            else if (mediaType === 'video') mediaFormatText = 'Video';
+
+            // Buat ID baru
+            const newId = Date.now(); // ID unik sederhana
+
+            const newMaterial = {
+                id: newId,
+                title: title,
+                media: mediaType,
+                content: content,
+                mediaFormat: mediaFormatText
+            };
+
+            firstChapter.materials.push(newMaterial);
+            
+            // Beri notifikasi (simulasi alert)
+            alertMessage(`Materi "${title}" berhasil ditambahkan!`, 'success');
+            
+            // Render ulang halaman admin
+            navigate('admin');
+        }
+
+        function deleteMaterial(chapterId, materialId) {
+            if (!confirm('Apakah Anda yakin ingin menghapus materi ini?')) return;
+
+            const firstSubject = contentData[0];
+            const chapter = firstSubject.chapters.find(c => c.id === chapterId);
+            
+            if (chapter) {
+                chapter.materials = chapter.materials.filter(m => m.id !== materialId);
+                alertMessage(`Materi berhasil dihapus.`, 'error');
+                navigate('admin'); // Render ulang
+            }
+        }
+
+        // --- Fungsi Notifikasi (Pengganti Alert) ---
+        function alertMessage(message, type) {
+            const container = document.getElementById('app');
+            let bgColor = type === 'success' ? 'bg-green-100 border-green-400 text-green-700' : 'bg-red-100 border-red-400 text-red-700';
+
+            const alertBox = document.createElement('div');
+            alertBox.className = `fixed top-4 right-4 p-4 rounded-lg border ${bgColor} shadow-lg z-50 transition-all duration-300 transform translate-x-full`;
+            alertBox.textContent = message;
+
+            container.appendChild(alertBox);
+
+            // Animate in
+            setTimeout(() => {
+                alertBox.classList.remove('translate-x-full');
+                alertBox.classList.add('translate-x-0');
+            }, 100);
+
+
+            setTimeout(() => {
+                // Animate out
+                alertBox.classList.remove('translate-x-0');
+                alertBox.classList.add('translate-x-full');
+                setTimeout(() => alertBox.remove(), 300);
+            }, 3000);
+        }
+
+        // --- Inisialisasi Aplikasi ---
+        window.onload = () => {
+            renderPage(); // Render halaman 'content' pertama kali
+        };
+
+    </script>
+</body>
+</html>
