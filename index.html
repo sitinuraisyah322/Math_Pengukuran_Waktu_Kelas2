@@ -1,0 +1,1200 @@
+<!doctype html>
+<html lang="id">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Kuis Cerdas Matematika - Pengukuran Waktu</title>
+  <script src="/_sdk/data_sdk.js"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <style>
+        body {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Comic Sans MS', 'Poppins', cursive, sans-serif;
+            background: linear-gradient(135deg, #87CEEB 0%, #98D8E8 100%);
+            min-height: 100%;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        /* Animated Background Elements */
+        .cloud {
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+            opacity: 0.8;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .cloud:before, .cloud:after {
+            content: '';
+            position: absolute;
+            background: white;
+            border-radius: 100px;
+        }
+
+        .cloud1 {
+            width: 100px;
+            height: 40px;
+            top: 10%;
+            left: -100px;
+            animation-delay: 0s;
+        }
+
+        .cloud1:before {
+            width: 50px;
+            height: 50px;
+            top: -25px;
+            left: 10px;
+        }
+
+        .cloud1:after {
+            width: 60px;
+            height: 40px;
+            top: -15px;
+            right: 10px;
+        }
+
+        .cloud2 {
+            width: 120px;
+            height: 50px;
+            top: 30%;
+            left: -120px;
+            animation-delay: 7s;
+        }
+
+        .cloud2:before {
+            width: 60px;
+            height: 60px;
+            top: -30px;
+            left: 15px;
+        }
+
+        .cloud2:after {
+            width: 70px;
+            height: 50px;
+            top: -20px;
+            right: 15px;
+        }
+
+        .cloud3 {
+            width: 90px;
+            height: 35px;
+            top: 60%;
+            left: -90px;
+            animation-delay: 14s;
+        }
+
+        .cloud3:before {
+            width: 45px;
+            height: 45px;
+            top: -20px;
+            left: 10px;
+        }
+
+        .cloud3:after {
+            width: 55px;
+            height: 35px;
+            top: -15px;
+            right: 10px;
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateX(0);
+            }
+            100% {
+                transform: translateX(calc(100vw + 150px));
+            }
+        }
+
+        .sun {
+            position: absolute;
+            top: 5%;
+            right: 8%;
+            width: 80px;
+            height: 80px;
+            background: #FFD700;
+            border-radius: 50%;
+            box-shadow: 0 0 30px #FFD700;
+            animation: pulse 3s infinite ease-in-out;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 0 30px #FFD700;
+            }
+            50% {
+                transform: scale(1.1);
+                box-shadow: 0 0 50px #FFD700;
+            }
+        }
+
+        /* Main Container */
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Home Screen */
+        .screen {
+            background: white;
+            border-radius: 30px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.2);
+            text-align: center;
+            animation: slideIn 0.5s ease-out;
+        }
+
+        @keyframes slideIn {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .title {
+            font-size: 42px;
+            color: #FF6B6B;
+            margin-bottom: 10px;
+            text-shadow: 3px 3px 0 #FFD93D;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% {
+                transform: translateY(0);
+            }
+            50% {
+                transform: translateY(-10px);
+            }
+        }
+
+        .subtitle {
+            font-size: 24px;
+            color: #4ECDC4;
+            margin-bottom: 30px;
+        }
+
+        .clock-icon {
+            font-size: 80px;
+            margin: 20px 0;
+            animation: tick 1s infinite;
+        }
+
+        @keyframes tick {
+            0%, 100% {
+                transform: rotate(-5deg);
+            }
+            50% {
+                transform: rotate(5deg);
+            }
+        }
+
+        .input-group {
+            margin: 20px 0;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 18px;
+            color: #333;
+            margin-bottom: 8px;
+            text-align: left;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            font-size: 18px;
+            border: 3px solid #4ECDC4;
+            border-radius: 15px;
+            font-family: 'Comic Sans MS', cursive;
+            transition: all 0.3s;
+        }
+
+        .input-group input:focus {
+            outline: none;
+            border-color: #FF6B6B;
+            transform: scale(1.02);
+        }
+
+        .btn {
+            padding: 15px 40px;
+            font-size: 20px;
+            font-weight: bold;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            margin: 10px;
+            transition: all 0.3s;
+            font-family: 'Comic Sans MS', cursive;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .btn:active {
+            transform: translateY(0);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #FF6B6B 0%, #FF8E53 100%);
+            color: white;
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #4ECDC4 0%, #44A08D 100%);
+            color: white;
+        }
+
+        .btn-warning {
+            background: linear-gradient(135deg, #FFD93D 0%, #F6C90E 100%);
+            color: #333;
+        }
+
+        .btn-small {
+            padding: 10px 25px;
+            font-size: 16px;
+        }
+
+        /* Quiz Screen */
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: #E0E0E0;
+            border-radius: 15px;
+            overflow: hidden;
+            margin-bottom: 20px;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #4ECDC4 0%, #44A08D 100%);
+            transition: width 0.5s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+        }
+
+        .question-box {
+            background: linear-gradient(135deg, #FFD93D 0%, #F6C90E 100%);
+            padding: 30px;
+            border-radius: 20px;
+            margin: 20px 0;
+            font-size: 24px;
+            color: #333;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .question-icon {
+            font-size: 60px;
+            margin-bottom: 15px;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .option-btn {
+            padding: 20px;
+            font-size: 18px;
+            background: white;
+            border: 4px solid #4ECDC4;
+            border-radius: 15px;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-family: 'Comic Sans MS', cursive;
+        }
+
+        .option-btn:hover {
+            background: #4ECDC4;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .option-btn.correct {
+            background: #6BCF7F;
+            border-color: #6BCF7F;
+            color: white;
+            animation: correctPulse 0.5s;
+        }
+
+        .option-btn.wrong {
+            background: #FF6B6B;
+            border-color: #FF6B6B;
+            color: white;
+            animation: shake 0.5s;
+        }
+
+        @keyframes correctPulse {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes shake {
+            0%, 100% {
+                transform: translateX(0);
+            }
+            25% {
+                transform: translateX(-10px);
+            }
+            75% {
+                transform: translateX(10px);
+            }
+        }
+
+        .score-display {
+            font-size: 28px;
+            color: #FF6B6B;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        /* Result Screen */
+        .stars {
+            font-size: 60px;
+            margin: 20px 0;
+        }
+
+        .final-score {
+            font-size: 48px;
+            color: #FF6B6B;
+            font-weight: bold;
+            margin: 20px 0;
+        }
+
+        /* Admin Panel */
+        .admin-panel {
+            text-align: left;
+        }
+
+        .admin-header {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+        }
+
+        .question-list {
+            max-height: 400px;
+            overflow-y: auto;
+            margin: 20px 0;
+        }
+
+        .question-item {
+            background: #f5f5f5;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 10px;
+            border-left: 5px solid #4ECDC4;
+        }
+
+        .question-item strong {
+            color: #FF6B6B;
+        }
+
+        .form-group {
+            margin: 15px 0;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+            color: #333;
+        }
+
+        .form-group input, .form-group select {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #4ECDC4;
+            border-radius: 10px;
+            font-family: 'Comic Sans MS', cursive;
+            font-size: 16px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.7);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            max-height: 80%;
+            overflow-y: auto;
+        }
+
+        .toast {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            border-radius: 10px;
+            color: white;
+            font-weight: bold;
+            z-index: 2000;
+            animation: slideInRight 0.3s ease-out;
+        }
+
+        @keyframes slideInRight {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+
+        .toast.success {
+            background: #6BCF7F;
+        }
+
+        .toast.error {
+            background: #FF6B6B;
+        }
+
+        @media (max-width: 768px) {
+            .title {
+                font-size: 32px;
+            }
+            .subtitle {
+                font-size: 20px;
+            }
+            .options {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+ </head>
+ <body>
+  <div class="cloud cloud1"></div>
+  <div class="cloud cloud2"></div>
+  <div class="cloud cloud3"></div>
+  <div class="sun"></div>
+  <div class="container"><!-- Home Screen -->
+   <div id="homeScreen" class="screen">
+    <div class="clock-icon">
+     🕐
+    </div>
+    <h1 class="title" id="appTitle">Kuis Cerdas Matematika</h1>
+    <p class="subtitle" id="appSubtitle">Pengukuran Waktu</p>
+    <div class="input-group"><label for="studentName">Nama Kamu:</label> <input type="text" id="studentName" placeholder="Masukkan nama kamu">
+    </div>
+    <div class="input-group"><label for="studentClass">Kelas:</label> <input type="text" id="studentClass" placeholder="Contoh: 2A" value="2">
+    </div><button class="btn btn-primary" id="startBtn"> <span id="startButtonText">🚀 Mulai Kuis</span> </button> <br><button class="btn btn-secondary btn-small" id="helpBtn"> <span id="helpButtonText">❓ Bantuan</span> </button> <button class="btn btn-warning btn-small" id="adminBtn"> <span id="adminButtonText">🔐 Admin</span> </button>
+   </div><!-- Quiz Screen -->
+   <div id="quizScreen" class="screen hidden">
+    <div class="progress-bar">
+     <div class="progress-fill" id="progressBar">
+      Level 1 dari 20
+     </div>
+    </div>
+    <div class="score-display">
+     Skor: <span id="scoreDisplay">0</span> ⭐
+    </div>
+    <div class="question-box">
+     <div class="question-icon" id="questionIcon">
+      🕐
+     </div>
+     <div id="questionText">
+      Memuat soal...
+     </div>
+    </div>
+    <div class="options" id="optionsContainer"></div><button class="btn btn-secondary btn-small" id="quitBtn">🏠 Kembali ke Beranda</button>
+   </div><!-- Result Screen -->
+   <div id="resultScreen" class="screen hidden">
+    <h2 class="title">🎉 Selamat! 🎉</h2>
+    <div class="stars" id="starsDisplay">
+     ⭐⭐⭐
+    </div>
+    <div class="final-score">
+     Skor Akhir: <span id="finalScore">0</span>
+    </div>
+    <p style="font-size: 20px; color: #333;" id="resultMessage">Kamu hebat!</p><button class="btn btn-primary" id="retryBtn">🔄 Ulangi Kuis</button> <button class="btn btn-secondary" id="homeBtn">🏠 Kembali ke Beranda</button>
+   </div><!-- Admin Screen -->
+   <div id="adminScreen" class="screen hidden">
+    <div class="admin-header">
+     <h2>🔐 Panel Admin</h2>
+     <p>Kelola Soal Kuis</p>
+    </div><button class="btn btn-primary" id="addQuestionBtn">➕ Tambah Soal Baru</button> <button class="btn btn-secondary" id="backToHomeBtn">🏠 Kembali</button>
+    <div class="question-list" id="questionList"></div>
+   </div>
+  </div>
+  <script>
+        const defaultConfig = {
+            app_title: "Kuis Cerdas Matematika",
+            app_subtitle: "Pengukuran Waktu",
+            start_button_text: "🚀 Mulai Kuis",
+            help_button_text: "❓ Bantuan",
+            admin_button_text: "🔐 Admin",
+            background_color: "#87CEEB",
+            surface_color: "#FFFFFF",
+            text_color: "#333333",
+            primary_action_color: "#FF6B6B",
+            secondary_action_color: "#4ECDC4"
+        };
+
+        let currentLevel = 1;
+        let score = 0;
+        let studentName = '';
+        let studentClass = '';
+        let allQuestions = [];
+        let isAnswered = false;
+
+        const referenceQuestions = [
+            { id: "q1", level: 1, question: "Jam menunjukkan pukul 3.00. Jarum pendek menunjuk angka berapa?", option_a: "1", option_b: "2", option_c: "3", option_d: "12", correct_answer: "C", image_emoji: "🕒" },
+            { id: "q2", level: 2, question: "Hari ini hari Senin. Besok hari apa?", option_a: "Minggu", option_b: "Selasa", option_c: "Rabu", option_d: "Kamis", correct_answer: "B", image_emoji: "📅" },
+            { id: "q3", level: 3, question: "1 jam sama dengan berapa menit?", option_a: "30 menit", option_b: "45 menit", option_c: "60 menit", option_d: "90 menit", correct_answer: "C", image_emoji: "⏰" },
+            { id: "q4", level: 4, question: "Pukul 12 siang disebut juga pukul berapa?", option_a: "00.00", option_b: "12.00", option_c: "24.00", option_d: "06.00", correct_answer: "B", image_emoji: "🕛" },
+            { id: "q5", level: 5, question: "Sekarang pukul 7 pagi. Dua jam lagi pukul berapa?", option_a: "8 pagi", option_b: "9 pagi", option_c: "10 pagi", option_d: "5 pagi", correct_answer: "B", image_emoji: "🌅" },
+            { id: "q6", level: 6, question: "Dalam 1 minggu ada berapa hari?", option_a: "5 hari", option_b: "6 hari", option_c: "7 hari", option_d: "8 hari", correct_answer: "C", image_emoji: "📆" },
+            { id: "q7", level: 7, question: "Jarum panjang menunjuk angka 6. Itu artinya berapa menit?", option_a: "15 menit", option_b: "20 menit", option_c: "30 menit", option_d: "45 menit", correct_answer: "C", image_emoji: "🕕" },
+            { id: "q8", level: 8, question: "Pukul 8 malam sama dengan pukul berapa dalam format 24 jam?", option_a: "08.00", option_b: "18.00", option_c: "20.00", option_d: "22.00", correct_answer: "C", image_emoji: "🌙" },
+            { id: "q9", level: 9, question: "Hari sebelum hari Jumat adalah hari apa?", option_a: "Rabu", option_b: "Kamis", option_c: "Sabtu", option_d: "Minggu", correct_answer: "B", image_emoji: "📋" },
+            { id: "q10", level: 10, question: "Ani belajar dari pukul 2 sampai pukul 4 sore. Berapa lama Ani belajar?", option_a: "1 jam", option_b: "2 jam", option_c: "3 jam", option_d: "4 jam", correct_answer: "B", image_emoji: "📚" },
+            { id: "q11", level: 11, question: "30 menit sama dengan berapa detik?", option_a: "600 detik", option_b: "1200 detik", option_c: "1800 detik", option_d: "3600 detik", correct_answer: "C", image_emoji: "⏱️" },
+            { id: "q12", level: 12, question: "Pukul 10.15 artinya pukul 10 lewat berapa menit?", option_a: "5 menit", option_b: "10 menit", option_c: "15 menit", option_d: "20 menit", correct_answer: "C", image_emoji: "🕙" },
+            { id: "q13", level: 13, question: "Budi tidur pukul 9 malam dan bangun pukul 6 pagi. Berapa jam Budi tidur?", option_a: "7 jam", option_b: "8 jam", option_c: "9 jam", option_d: "10 jam", correct_answer: "C", image_emoji: "😴" },
+            { id: "q14", level: 14, question: "Dalam 1 hari ada berapa jam?", option_a: "12 jam", option_b: "20 jam", option_c: "24 jam", option_d: "30 jam", correct_answer: "C", image_emoji: "🌍" },
+            { id: "q15", level: 15, question: "Pukul 3.45 artinya pukul 4 kurang berapa menit?", option_a: "10 menit", option_b: "15 menit", option_c: "20 menit", option_d: "25 menit", correct_answer: "B", image_emoji: "🕞" },
+            { id: "q16", level: 16, question: "Sekarang pukul 11.30. Setengah jam lagi pukul berapa?", option_a: "11.00", option_b: "12.00", option_c: "12.30", option_d: "13.00", correct_answer: "B", image_emoji: "🕧" },
+            { id: "q17", level: 17, question: "Film dimulai pukul 14.00 dan selesai pukul 16.00. Berapa lama film tersebut?", option_a: "1 jam", option_b: "2 jam", option_c: "3 jam", option_d: "4 jam", correct_answer: "B", image_emoji: "🎬" },
+            { id: "q18", level: 18, question: "Pukul 7.20 artinya pukul 7 lewat berapa menit?", option_a: "10 menit", option_b: "15 menit", option_c: "20 menit", option_d: "25 menit", correct_answer: "C", image_emoji: "🕖" },
+            { id: "q19", level: 19, question: "Siti berangkat sekolah pukul 06.30 dan sampai pukul 07.00. Berapa lama perjalanan Siti?", option_a: "15 menit", option_b: "20 menit", option_c: "30 menit", option_d: "45 menit", correct_answer: "C", image_emoji: "🚌" },
+            { id: "q20", level: 20, question: "Sebuah film dimulai pukul 19.30 dan berakhir pukul 21.15. Berapa lama durasi film tersebut?", option_a: "1 jam 15 menit", option_b: "1 jam 30 menit", option_c: "1 jam 45 menit", option_d: "2 jam", correct_answer: "C", image_emoji: "🎥" },
+            
+            // 10 Soal Tambahan Baru
+            { id: "q21", level: 21, question: "Jarum pendek menunjuk angka 5 dan jarum panjang menunjuk angka 12. Sekarang pukul berapa?", option_a: "5.00", option_b: "12.05", option_c: "5.12", option_d: "12.00", correct_answer: "A", image_emoji: "🕔" },
+            { id: "q22", level: 22, question: "Kemarin hari Rabu. Lusa hari apa?", option_a: "Kamis", option_b: "Jumat", option_c: "Sabtu", option_d: "Minggu", correct_answer: "C", image_emoji: "📅" },
+            { id: "q23", level: 23, question: "Pukul 6 pagi ditambah 4 jam menjadi pukul berapa?", option_a: "9 pagi", option_b: "10 pagi", option_c: "11 pagi", option_d: "2 siang", correct_answer: "B", image_emoji: "🌅" },
+            { id: "q24", level: 24, question: "15 menit sama dengan berapa detik?", option_a: "600 detik", option_b: "900 detik", option_c: "1200 detik", option_d: "1500 detik", correct_answer: "B", image_emoji: "⏰" },
+            { id: "q25", level: 25, question: "Dina makan siang pukul 12.00 dan selesai pukul 12.30. Berapa lama Dina makan?", option_a: "15 menit", option_b: "20 menit", option_c: "30 menit", option_d: "45 menit", correct_answer: "C", image_emoji: "🍽️" },
+            { id: "q26", level: 26, question: "Pukul 2.30 sore sama dengan pukul berapa dalam format 24 jam?", option_a: "02.30", option_b: "12.30", option_c: "14.30", option_d: "16.30", correct_answer: "C", image_emoji: "☀️" },
+            { id: "q27", level: 27, question: "Jarum panjang menunjuk angka 3. Itu artinya berapa menit?", option_a: "3 menit", option_b: "15 menit", option_c: "30 menit", option_d: "45 menit", correct_answer: "B", image_emoji: "🕒" },
+            { id: "q28", level: 28, question: "Roni bermain dari pukul 15.00 sampai pukul 17.30. Berapa lama Roni bermain?", option_a: "2 jam", option_b: "2 jam 15 menit", option_c: "2 jam 30 menit", option_d: "3 jam", correct_answer: "C", image_emoji: "⚽" },
+            { id: "q29", level: 29, question: "Pukul 9.45 artinya pukul 10 kurang berapa menit?", option_a: "10 menit", option_b: "15 menit", option_c: "20 menit", option_d: "25 menit", correct_answer: "B", image_emoji: "🕘" },
+            { id: "q30", level: 30, question: "Dalam 2 jam ada berapa menit?", option_a: "60 menit", option_b: "90 menit", option_c: "120 menit", option_d: "150 menit", correct_answer: "C", image_emoji: "⏳" }
+        ];
+
+        const dataHandler = {
+            onDataChanged(data) {
+                allQuestions = mergeQuestionsWithUserData(data);
+                if (document.getElementById('adminScreen').classList.contains('hidden') === false) {
+                    renderQuestionList();
+                }
+            }
+        };
+
+        function mergeQuestionsWithUserData(userData) {
+            const merged = referenceQuestions.map(refQ => {
+                const userQ = userData.find(uq => uq.id === refQ.id);
+                if (userQ) {
+                    return { ...refQ, ...userQ };
+                }
+                return refQ;
+            });
+            return merged;
+        }
+
+        async function initializeApp() {
+            const initResult = await window.dataSdk.init(dataHandler);
+            if (!initResult.isOk) {
+                console.error("Failed to initialize data SDK");
+                allQuestions = [...referenceQuestions];
+            }
+        }
+
+        async function onConfigChange(config) {
+            document.getElementById('appTitle').textContent = config.app_title || defaultConfig.app_title;
+            document.getElementById('appSubtitle').textContent = config.app_subtitle || defaultConfig.app_subtitle;
+            document.getElementById('startButtonText').textContent = config.start_button_text || defaultConfig.start_button_text;
+            document.getElementById('helpButtonText').textContent = config.help_button_text || defaultConfig.help_button_text;
+            document.getElementById('adminButtonText').textContent = config.admin_button_text || defaultConfig.admin_button_text;
+
+            const bgColor = config.background_color || defaultConfig.background_color;
+            const surfaceColor = config.surface_color || defaultConfig.surface_color;
+            const textColor = config.text_color || defaultConfig.text_color;
+            const primaryColor = config.primary_action_color || defaultConfig.primary_action_color;
+            const secondaryColor = config.secondary_action_color || defaultConfig.secondary_action_color;
+
+            document.body.style.background = `linear-gradient(135deg, ${bgColor} 0%, ${bgColor}dd 100%)`;
+            
+            const screens = document.querySelectorAll('.screen');
+            screens.forEach(screen => {
+                screen.style.background = surfaceColor;
+                screen.style.color = textColor;
+            });
+
+            const primaryBtns = document.querySelectorAll('.btn-primary');
+            primaryBtns.forEach(btn => {
+                btn.style.background = `linear-gradient(135deg, ${primaryColor} 0%, ${primaryColor}dd 100%)`;
+            });
+
+            const secondaryBtns = document.querySelectorAll('.btn-secondary');
+            secondaryBtns.forEach(btn => {
+                btn.style.background = `linear-gradient(135deg, ${secondaryColor} 0%, ${secondaryColor}dd 100%)`;
+            });
+
+            document.querySelectorAll('.title').forEach(el => {
+                el.style.color = primaryColor;
+            });
+
+            document.querySelectorAll('.subtitle').forEach(el => {
+                el.style.color = secondaryColor;
+            });
+        }
+
+        window.elementSdk.init({
+            defaultConfig,
+            onConfigChange,
+            mapToCapabilities: (config) => ({
+                recolorables: [
+                    {
+                        get: () => config.background_color || defaultConfig.background_color,
+                        set: (value) => {
+                            config.background_color = value;
+                            window.elementSdk.setConfig({ background_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.surface_color || defaultConfig.surface_color,
+                        set: (value) => {
+                            config.surface_color = value;
+                            window.elementSdk.setConfig({ surface_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.text_color || defaultConfig.text_color,
+                        set: (value) => {
+                            config.text_color = value;
+                            window.elementSdk.setConfig({ text_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.primary_action_color || defaultConfig.primary_action_color,
+                        set: (value) => {
+                            config.primary_action_color = value;
+                            window.elementSdk.setConfig({ primary_action_color: value });
+                        }
+                    },
+                    {
+                        get: () => config.secondary_action_color || defaultConfig.secondary_action_color,
+                        set: (value) => {
+                            config.secondary_action_color = value;
+                            window.elementSdk.setConfig({ secondary_action_color: value });
+                        }
+                    }
+                ],
+                borderables: [],
+                fontEditable: undefined,
+                fontSizeable: undefined
+            }),
+            mapToEditPanelValues: (config) => new Map([
+                ["app_title", config.app_title || defaultConfig.app_title],
+                ["app_subtitle", config.app_subtitle || defaultConfig.app_subtitle],
+                ["start_button_text", config.start_button_text || defaultConfig.start_button_text],
+                ["help_button_text", config.help_button_text || defaultConfig.help_button_text],
+                ["admin_button_text", config.admin_button_text || defaultConfig.admin_button_text]
+            ])
+        });
+
+        function showScreen(screenId) {
+            document.querySelectorAll('.screen').forEach(screen => {
+                screen.classList.add('hidden');
+            });
+            document.getElementById(screenId).classList.remove('hidden');
+        }
+
+        function showToast(message, type = 'success') {
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        function startQuiz() {
+            studentName = document.getElementById('studentName').value.trim();
+            studentClass = document.getElementById('studentClass').value.trim();
+            
+            if (!studentName) {
+                showToast('Masukkan nama kamu dulu ya! 😊', 'error');
+                return;
+            }
+            
+            currentLevel = 1;
+            score = 0;
+            isAnswered = false;
+            showScreen('quizScreen');
+            loadQuestion();
+        }
+
+        function loadQuestion() {
+            const question = allQuestions.find(q => q.level === currentLevel);
+            if (!question) {
+                showToast('Soal tidak ditemukan!', 'error');
+                return;
+            }
+
+            isAnswered = false;
+            document.getElementById('questionIcon').textContent = question.image_emoji;
+            document.getElementById('questionText').textContent = question.question;
+            document.getElementById('scoreDisplay').textContent = score;
+            
+            const progress = (currentLevel / 20) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+            document.getElementById('progressBar').textContent = `Level ${currentLevel} dari 20`;
+            
+            const optionsContainer = document.getElementById('optionsContainer');
+            optionsContainer.innerHTML = '';
+            
+            const options = [
+                { label: 'A', text: question.option_a },
+                { label: 'B', text: question.option_b },
+                { label: 'C', text: question.option_c },
+                { label: 'D', text: question.option_d }
+            ];
+            
+            options.forEach(option => {
+                const btn = document.createElement('button');
+                btn.className = 'option-btn';
+                btn.textContent = `${option.label}. ${option.text}`;
+                btn.onclick = () => checkAnswer(option.label, question.correct_answer);
+                optionsContainer.appendChild(btn);
+            });
+        }
+
+        function checkAnswer(selected, correct) {
+            if (isAnswered) return;
+            isAnswered = true;
+
+            const buttons = document.querySelectorAll('.option-btn');
+            buttons.forEach(btn => {
+                const btnLabel = btn.textContent.charAt(0);
+                if (btnLabel === correct) {
+                    btn.classList.add('correct');
+                } else if (btnLabel === selected && selected !== correct) {
+                    btn.classList.add('wrong');
+                }
+                btn.style.pointerEvents = 'none';
+            });
+
+            if (selected === correct) {
+                score += 5;
+                showToast('Benar! 🎉', 'success');
+            } else {
+                score = Math.max(0, score - 2);
+                showToast('Coba lagi ya! 💪', 'error');
+            }
+
+            document.getElementById('scoreDisplay').textContent = score;
+
+            setTimeout(() => {
+                if (currentLevel < 20) {
+                    currentLevel++;
+                    loadQuestion();
+                } else {
+                    showResult();
+                }
+            }, 2000);
+        }
+
+        function showResult() {
+            showScreen('resultScreen');
+            document.getElementById('finalScore').textContent = score;
+            
+            let stars = '';
+            let message = '';
+            
+            if (score >= 80) {
+                stars = '⭐⭐⭐';
+                message = 'Luar biasa! Kamu sangat pintar! 🏆';
+            } else if (score >= 60) {
+                stars = '⭐⭐';
+                message = 'Bagus sekali! Terus belajar ya! 👍';
+            } else {
+                stars = '⭐';
+                message = 'Tetap semangat! Kamu pasti bisa! 💪';
+            }
+            
+            document.getElementById('starsDisplay').textContent = stars;
+            document.getElementById('resultMessage').textContent = message;
+        }
+
+        function showAdminLogin() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h2 style="color: #667eea;">🔐 Login Admin</h2>
+                    <div class="form-group">
+                        <label for="adminPassword">Password:</label>
+                        <input type="password" id="adminPassword" placeholder="Masukkan password">
+                    </div>
+                    <button class="btn btn-primary" onclick="verifyAdmin()">Masuk</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        function verifyAdmin() {
+            const password = document.getElementById('adminPassword').value;
+            if (password === 'admin123') {
+                closeModal();
+                showScreen('adminScreen');
+                renderQuestionList();
+            } else {
+                showToast('Password salah!', 'error');
+            }
+        }
+
+        function closeModal() {
+            const modal = document.querySelector('.modal');
+            if (modal) modal.remove();
+        }
+
+        function renderQuestionList() {
+            const listContainer = document.getElementById('questionList');
+            listContainer.innerHTML = '<h3 style="color: #667eea;">📝 Daftar Soal</h3>';
+            
+            allQuestions.forEach(q => {
+                const item = document.createElement('div');
+                item.className = 'question-item';
+                item.innerHTML = `
+                    <strong>Level ${q.level}:</strong> ${q.question}<br>
+                    <small>Jawaban: ${q.correct_answer}</small><br>
+                    <button class="btn btn-warning btn-small" onclick="editQuestion('${q.id}')">✏️ Edit</button>
+                    <button class="btn btn-secondary btn-small" onclick="deleteQuestion('${q.id}')">🗑️ Hapus</button>
+                `;
+                listContainer.appendChild(item);
+            });
+        }
+
+        function showAddQuestionForm() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h2 style="color: #667eea;">➕ Tambah Soal Baru</h2>
+                    <div class="form-group">
+                        <label for="newLevel">Level (1-20):</label>
+                        <input type="number" id="newLevel" min="1" max="20" value="1">
+                    </div>
+                    <div class="form-group">
+                        <label for="newQuestion">Pertanyaan:</label>
+                        <input type="text" id="newQuestion" placeholder="Masukkan pertanyaan">
+                    </div>
+                    <div class="form-group">
+                        <label for="newOptionA">Pilihan A:</label>
+                        <input type="text" id="newOptionA" placeholder="Pilihan A">
+                    </div>
+                    <div class="form-group">
+                        <label for="newOptionB">Pilihan B:</label>
+                        <input type="text" id="newOptionB" placeholder="Pilihan B">
+                    </div>
+                    <div class="form-group">
+                        <label for="newOptionC">Pilihan C:</label>
+                        <input type="text" id="newOptionC" placeholder="Pilihan C">
+                    </div>
+                    <div class="form-group">
+                        <label for="newOptionD">Pilihan D:</label>
+                        <input type="text" id="newOptionD" placeholder="Pilihan D">
+                    </div>
+                    <div class="form-group">
+                        <label for="newCorrect">Jawaban Benar:</label>
+                        <select id="newCorrect">
+                            <option value="A">A</option>
+                            <option value="B">B</option>
+                            <option value="C">C</option>
+                            <option value="D">D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="newEmoji">Emoji:</label>
+                        <input type="text" id="newEmoji" placeholder="🕐" value="🕐">
+                    </div>
+                    <button class="btn btn-primary" onclick="saveNewQuestion()">💾 Simpan</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        async function saveNewQuestion() {
+            const level = parseInt(document.getElementById('newLevel').value);
+            const question = document.getElementById('newQuestion').value.trim();
+            const optionA = document.getElementById('newOptionA').value.trim();
+            const optionB = document.getElementById('newOptionB').value.trim();
+            const optionC = document.getElementById('newOptionC').value.trim();
+            const optionD = document.getElementById('newOptionD').value.trim();
+            const correct = document.getElementById('newCorrect').value;
+            const emoji = document.getElementById('newEmoji').value.trim();
+
+            if (!question || !optionA || !optionB || !optionC || !optionD) {
+                showToast('Lengkapi semua field!', 'error');
+                return;
+            }
+
+            const existingQuestion = allQuestions.find(q => q.level === level);
+            if (existingQuestion && existingQuestion.__backendId) {
+                const updateResult = await window.dataSdk.update({
+                    __backendId: existingQuestion.__backendId,
+                    id: existingQuestion.id,
+                    level: level,
+                    question: question,
+                    option_a: optionA,
+                    option_b: optionB,
+                    option_c: optionC,
+                    option_d: optionD,
+                    correct_answer: correct,
+                    image_emoji: emoji
+                });
+
+                if (updateResult.isOk) {
+                    showToast('Soal berhasil diperbarui!', 'success');
+                    closeModal();
+                } else {
+                    showToast('Gagal memperbarui soal!', 'error');
+                }
+            } else {
+                const newId = `q${level}`;
+                const createResult = await window.dataSdk.create({
+                    id: newId,
+                    level: level,
+                    question: question,
+                    option_a: optionA,
+                    option_b: optionB,
+                    option_c: optionC,
+                    option_d: optionD,
+                    correct_answer: correct,
+                    image_emoji: emoji
+                });
+
+                if (createResult.isOk) {
+                    showToast('Soal berhasil ditambahkan!', 'success');
+                    closeModal();
+                } else {
+                    showToast('Gagal menambahkan soal!', 'error');
+                }
+            }
+        }
+
+        function editQuestion(id) {
+            const question = allQuestions.find(q => q.id === id);
+            if (!question) return;
+
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h2 style="color: #667eea;">✏️ Edit Soal</h2>
+                    <div class="form-group">
+                        <label for="editLevel">Level (1-20):</label>
+                        <input type="number" id="editLevel" min="1" max="20" value="${question.level}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editQuestion">Pertanyaan:</label>
+                        <input type="text" id="editQuestion" value="${question.question}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editOptionA">Pilihan A:</label>
+                        <input type="text" id="editOptionA" value="${question.option_a}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editOptionB">Pilihan B:</label>
+                        <input type="text" id="editOptionB" value="${question.option_b}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editOptionC">Pilihan C:</label>
+                        <input type="text" id="editOptionC" value="${question.option_c}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editOptionD">Pilihan D:</label>
+                        <input type="text" id="editOptionD" value="${question.option_d}">
+                    </div>
+                    <div class="form-group">
+                        <label for="editCorrect">Jawaban Benar:</label>
+                        <select id="editCorrect">
+                            <option value="A" ${question.correct_answer === 'A' ? 'selected' : ''}>A</option>
+                            <option value="B" ${question.correct_answer === 'B' ? 'selected' : ''}>B</option>
+                            <option value="C" ${question.correct_answer === 'C' ? 'selected' : ''}>C</option>
+                            <option value="D" ${question.correct_answer === 'D' ? 'selected' : ''}>D</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="editEmoji">Emoji:</label>
+                        <input type="text" id="editEmoji" value="${question.image_emoji}">
+                    </div>
+                    <button class="btn btn-primary" onclick="updateQuestion('${id}')">💾 Simpan</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        async function updateQuestion(id) {
+            const question = allQuestions.find(q => q.id === id);
+            if (!question || !question.__backendId) {
+                showToast('Soal tidak ditemukan!', 'error');
+                return;
+            }
+
+            const level = parseInt(document.getElementById('editLevel').value);
+            const questionText = document.getElementById('editQuestion').value.trim();
+            const optionA = document.getElementById('editOptionA').value.trim();
+            const optionB = document.getElementById('editOptionB').value.trim();
+            const optionC = document.getElementById('editOptionC').value.trim();
+            const optionD = document.getElementById('editOptionD').value.trim();
+            const correct = document.getElementById('editCorrect').value;
+            const emoji = document.getElementById('editEmoji').value.trim();
+
+            if (!questionText || !optionA || !optionB || !optionC || !optionD) {
+                showToast('Lengkapi semua field!', 'error');
+                return;
+            }
+
+            const updateResult = await window.dataSdk.update({
+                __backendId: question.__backendId,
+                id: id,
+                level: level,
+                question: questionText,
+                option_a: optionA,
+                option_b: optionB,
+                option_c: optionC,
+                option_d: optionD,
+                correct_answer: correct,
+                image_emoji: emoji
+            });
+
+            if (updateResult.isOk) {
+                showToast('Soal berhasil diperbarui!', 'success');
+                closeModal();
+            } else {
+                showToast('Gagal memperbarui soal!', 'error');
+            }
+        }
+
+        async function deleteQuestion(id) {
+            const question = allQuestions.find(q => q.id === id);
+            if (!question || !question.__backendId) {
+                showToast('Soal tidak dapat dihapus!', 'error');
+                return;
+            }
+
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h2 style="color: #FF6B6B;">⚠️ Konfirmasi Hapus</h2>
+                    <p>Apakah kamu yakin ingin menghapus soal level ${question.level}?</p>
+                    <button class="btn btn-primary" onclick="confirmDelete('${id}')">Ya, Hapus</button>
+                    <button class="btn btn-secondary" onclick="closeModal()">Batal</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        async function confirmDelete(id) {
+            const question = allQuestions.find(q => q.id === id);
+            if (!question || !question.__backendId) {
+                showToast('Soal tidak ditemukan!', 'error');
+                closeModal();
+                return;
+            }
+
+            const deleteResult = await window.dataSdk.delete(question);
+
+            if (deleteResult.isOk) {
+                showToast('Soal berhasil dihapus!', 'success');
+                closeModal();
+            } else {
+                showToast('Gagal menghapus soal!', 'error');
+            }
+        }
+
+        function showHelp() {
+            const modal = document.createElement('div');
+            modal.className = 'modal';
+            modal.innerHTML = `
+                <div class="modal-content">
+                    <h2 style="color: #4ECDC4;">❓ Cara Bermain</h2>
+                    <p style="text-align: left; line-height: 1.8;">
+                        1. Masukkan nama dan kelas kamu<br>
+                        2. Klik tombol "Mulai Kuis"<br>
+                        3. Baca soal dengan teliti<br>
+                        4. Pilih jawaban yang benar<br>
+                        5. Jawaban benar: +5 poin ⭐<br>
+                        6. Jawaban salah: -2 poin<br>
+                        7. Selesaikan 20 level untuk melihat skor akhir!<br>
+                        <br>
+                        <strong>Tips:</strong> Baca soal pelan-pelan dan pikirkan baik-baik sebelum menjawab! 🧠
+                    </p>
+                    <button class="btn btn-primary" onclick="closeModal()">Mengerti!</button>
+                </div>
+            `;
+            document.body.appendChild(modal);
+        }
+
+        document.getElementById('startBtn').addEventListener('click', startQuiz);
+        document.getElementById('helpBtn').addEventListener('click', showHelp);
+        document.getElementById('adminBtn').addEventListener('click', showAdminLogin);
+        document.getElementById('quitBtn').addEventListener('click', () => showScreen('homeScreen'));
+        document.getElementById('retryBtn').addEventListener('click', startQuiz);
+        document.getElementById('homeBtn').addEventListener('click', () => showScreen('homeScreen'));
+        document.getElementById('backToHomeBtn').addEventListener('click', () => showScreen('homeScreen'));
+        document.getElementById('addQuestionBtn').addEventListener('click', showAddQuestionForm);
+
+        initializeApp();
+    </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'99a25ee193c89c2f',t:'MTc2MjQwODgyNy4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
